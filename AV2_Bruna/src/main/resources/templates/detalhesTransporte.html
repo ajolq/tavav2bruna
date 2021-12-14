@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      lang="pt-BR">
+<head> 
+    <title>TransporteApp</title> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+    <h1><a href="http://localhost:8080">Sistema de Transporte</a></h1>
+    <div>
+        <a class="btn btn-primary" href="/transportes">Listar</a>
+    </div>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Origem</th>
+                <th scope="col">Destino</th>
+                <th scope="col">Ida</th>
+                <th scope="col">Volta</th>
+                <th scope="col">Classe</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="transporte : ${transporte}">
+                <td><span th:text="${transporte.origem}"></span></td>
+                <td><span th:text="${transporte.destino}"></span></td>
+                <td><span th:text="${transporte.dataIda}"></span></td>
+                <td><span th:text="${transporte.dataVolta}"></span></td>
+                <td><span th:text="${transporte.opcoes}"></span></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <form method="POST">
+        <input type="text" value="" name="nome" placeholder="Nome do Cliente">
+        <input type="text" value="" name="rg" placeholder="RG">
+        <input type="text" value="" name="idade" placeholder="Idade">
+        <input type="text" value="" name="reserva" placeholder="Reserva">
+        <input type="text" value="" name="formaPagamento" placeholder="Pagamento">
+
+        <button class="btn btn-success btn-lg" type="submit"> Adicionar </button>
+    </form>
+
+    <br>
+    <h5> Lista de clientes </h5>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Nome do cliente</th>
+                <th scope="col">RG</th>
+                <th scope="col">Idade</th>
+                <th scope="col">Reserva</th>
+                <th scope="col">Pagamento</th>
+                <th scope="col">Deletar</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="cliente : ${clientes}">
+                <td><span th:text="${cliente.nome}"></span></td>
+                <td><span th:text="${cliente.rg}"></span></td>
+                <td><span th:text="${cliente.idade}"></span></td>
+                <td><span th:text="${cliente.reserva}"></span></td>
+                <td><span th:text="${cliente.formaPagamento}"></span></td>
+                <td><a class="btn btn-primary" th:href="${(#mvc.url('TC#deletarCliente').arg(0, cliente.rg)).build()}">Deletar</a></td>
+            </tr>
+        </tbody>
+    </table>
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
