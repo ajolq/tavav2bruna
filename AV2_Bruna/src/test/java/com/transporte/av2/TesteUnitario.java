@@ -10,7 +10,7 @@ public class TesteUnitario {
 
     
     @Test
-    void VerificarPlano() {
+    void VerificarReserva() {
         //Arrange
         Cliente Cliente = new Cliente();
         
